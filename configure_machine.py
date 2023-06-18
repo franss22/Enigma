@@ -8,18 +8,20 @@ available_reflectors = ["UKW-c", "UKW-b"]
 def save_configuration(args:list[str]):
     with open(CONFIG_FILE, "w") as config:
         config.write(" ".join(args))
-        
-
 
 if len(sys.argv) < 9:
     print("Wrong amount of arguments")
     sys.exit(1)
 
 rotors = sys.argv[1:5]
-for rotor_arg in rotors:
+for i, rotor_arg in enumerate(rotors):
     if rotor_arg not in available_rotors:
         print(f"Rotor argument \"{rotor_arg}\" is not a valid rotor.")
         sys.exit(1)
+    if rotor_arg == "Beta" and i in [0, 1, 2]:
+        print(f"Rotor argument \"{rotor_arg}\" must cannot be in position {i}")
+        sys.exit(1)
+
 offsets = []
 for offset_arg in sys.argv[5:9]:
     try:
