@@ -17,6 +17,17 @@ class Rotor:
             next = 1
         self.position += places
         return next
+    
+
+    def input(self, letter:str):
+        raise NotImplementedError
+
+    def output(self, letter:str):
+        raise NotImplementedError
+    
+    def reflect(self, letter:str):
+        return self.input(letter)
+
 
     def __init__(self, type:str, init_pos:int, _slots:list[int]):
         self.connections, self.muescas= rotor_connections(type)
