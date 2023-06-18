@@ -25,7 +25,12 @@ for i, rotor_arg in enumerate(rotors):
 offsets = []
 for offset_arg in sys.argv[5:9]:
     try:
-        offsets.append(int(offset_arg))
+        off = int(offset_arg)
+        if off >=1 and off <=26:
+            offsets.append()
+        else:
+            print(f"{off} is not a valid rotor position.")
+            sys.exit(1)
     except ValueError as e:
         print(f"Offset value \"{offset_arg}\" is not a valid number.")
         sys.exit(1)
