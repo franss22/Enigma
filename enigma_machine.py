@@ -1,10 +1,11 @@
 from utils import *
 from rotor import Rotor
+import sys
 
 rotors, offsets, plugboard, reflector = read_configuration()
 #print(rotors, offsets, plugboard, reflector)
 
-message = "msxy".upper()
+message = sys.argv[1].upper()
 
 rot1 = Rotor(rotors[0], offsets[0])
 rot2 = Rotor(rotors[1], offsets[1])

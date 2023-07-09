@@ -27,7 +27,7 @@ for offset_arg in sys.argv[5:9]:
     try:
         off = int(offset_arg)
         if off >=1 and off <=26:
-            offsets.append()
+            offsets.append(off)
         else:
             print(f"{off} is not a valid rotor position.")
             sys.exit(1)
