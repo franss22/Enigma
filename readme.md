@@ -1,7 +1,7 @@
 # Proyecto: Máquina Enigma
 ## *CC5301-1* Grupo 5
 
-Este proyecto implementa una máquina Enigma, la cual fue una serie de distintos dispositivos de uso militar, desarrollada y utiilzado por el ejército Nazi durante la Segunda Guerra mundial. Su función consistía en encriptar y desencriptar mensajes, tomando como parámetro la configuración de sus componentes.
+Este proyecto implementa una máquina Enigma, la cual fue una serie de distintos dispositivos de uso militar, desarrollada y utiilzado por el ejército Nazi durante la Segunda Guerra mundial. Su función consistía en encriptar y desencriptar mensajes, tomando como parámetro la configuración de sus componentes. La implementación se basa en el modelo M4 de la máquina Enigma.
 
 El encriptado consistía en la permutación de cada letra del alfabeto por otra, cuya pauta dependía de la configuración de cada máquina. Si bien existieron distintas versiones de la máquina Enigma con distintos componentes, todas seguían la estructura:
 * Un cilindro de entrada - *Stator* o *Entrittswaize*: contiene el alfabeto, ordenado.
