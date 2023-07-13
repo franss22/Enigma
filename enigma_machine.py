@@ -4,9 +4,12 @@ import sys
 
 rotors, offsets, plugboard, reflector = read_configuration()
 #print(rotors, offsets, plugboard, reflector)
-
-message = sys.argv[1].upper()
-
+largo_mensaje=len(sys.argv)
+message=""
+for i in range(1,largo_mensaje):
+    message=message+sys.argv[i].upper()+" " 
+#message = sys.argv[1].upper()
+message=message[:-1]
 rot1 = Rotor(rotors[0], offsets[0])
 rot2 = Rotor(rotors[1], offsets[1])
 rot3 = Rotor(rotors[2], offsets[2])
