@@ -1,7 +1,8 @@
 from utils import *
+
 def rotor_connections(type:str):
-    # Dado un string de tipo de rotor/refelector, 
-    # entrega el diccionario de permutaciones y lista de muescas correspondiente
+    # Dado un string de tipo de rotor/reflector, 
+    # entrega el diccionario de permutaciones y lista de muescas correspondiente segun la documentacion de la maquina enigma
     if type=='I':
         con=I
         muescas=[24]
@@ -28,32 +29,31 @@ def rotor_connections(type:str):
         muescas=[0,21]
     elif type=='Beta':
         con=BETA
-        muescas=[]
+        muescas=[] # beta al ser ultimo rotor, no hace girar a nada en cascada
     elif type=='UKW-b':
         con=UKW_B
-        muescas=[]
+        muescas=[] # reflector no hace girar a nada en cascada
     elif type=='UKW-c':
         con=UKW_C
-        muescas=[]
+        muescas=[] # reflector no hace girar a nada en cascada
     return (con,muescas)
 
 
+# clase que representa un rotor, con los atributos correspondientes, puede representar tambien a un reflector
 class Rotor:
-    connections = {}
-    position = 0
-    muescas = []
     
     def __init__(self, rotor, offset):
         con,muescas = rotor_connections(rotor)
         self.connections = con
-        self.muescas = muescas
-        self.position = offset
+        self.muescas = muescas # 
+        self.position = offset-1 # se empieza con 0 para seguir la logica de la encriptación implementada abajo
         
     def rotate(self, places:int):
         next = 0
-        if self.position in self.muescas:
-            next = 1
-        self.position += places
+        if places!=0:
+            if self.position in self.muescas:
+                next = 1
+            self.position += places
         
         return next
     
@@ -74,11 +74,3 @@ class Rotor:
     
     def reflect(self, letter:str):
         return self.input(letter)
-
-
-    # def __init__(self, type:str, init_pos:int, _slots:list[int]):
-    #     self.connections, self.muescas= rotor_connections(type)
-    #     self.position = init_pos
-
-    #     return self
-
