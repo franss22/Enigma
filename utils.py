@@ -1,5 +1,6 @@
 LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
+# Diccionarios para los distintos rotores y reflectores
 I     = {'A':'E','B':'K','C':'M','D':'F','E':'L','F':'G','G':'D','H':'Q','I':'V','J':'Z','K':'N','L':'T','M':'O','N':'W','O':'Y','P':'H','Q':'X','R':'U','S':'S','T':'P','U':'A','V':'I','W':'B','X':'R','Y':'C','Z':'J'}
 II    = {'A':'A','B':'J','C':'D','D':'K','E':'S','F':'I','G':'R','H':'U','I':'X','J':'B','K':'L','L':'H','M':'W','N':'T','O':'M','P':'C','Q':'Q','R':'G','S':'Z','T':'N','U':'P','V':'Y','W':'F','X':'V','Y':'O','Z':'E'}
 III   = {'A':'B','B':'D','C':'F','D':'H','E':'J','F':'L','G':'C','H':'P','I':'R','J':'T','K':'X','L':'V','M':'Z','N':'N','O':'Y','P':'E','Q':'I','R':'W','S':'G','T':'A','U':'K','V':'M','W':'U','X':'S','Y':'Q','Z':'O'}
@@ -15,6 +16,7 @@ UKW_C = {'A':'R','B':'D','C':'O','D':'B','E':'J','F':'N','G':'T','H':'K','I':'V'
 
 CONFIG_FILE = "config"
 
+# Para crear plugboard sin conexiones
 def base_plugboard():
     return {l:l for l in LETTERS}
 
@@ -24,7 +26,7 @@ def read_configuration():
     rotors = config[:4]
     offsets = [int(x) for x in config[4:8]]
     plugboard = base_plugboard()
-    for cable in config[8:-1]:
+    for cable in config[8:-1]: # se realizan los cambios en el diccionario del plugboard
         l1, l2 = cable
         plugboard[l1] = l2
         plugboard[l2] = l1

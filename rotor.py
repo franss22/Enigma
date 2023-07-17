@@ -50,14 +50,15 @@ class Rotor:
         
     def rotate(self, places:int):
         next = 0
-        if places!=0:
-            if self.position in self.muescas:
-                next = 1
-            self.position += places
+        if places!=0: #si se traslada
+            if self.position in self.muescas: # y estaba en una muesca
+                next = 1 # el siguiente rotará
+            self.position += places # se mueve rotor
         
         return next
     
     def input(self, letter:str):
+        # se realiza traslado para simular diccionario
         input_simulado = chr((ord(letter) + self.position - 65) % 26 + 65)
         output_simulado = self.connections[input_simulado]
         output_real = chr((ord(output_simulado) - self.position - 65) % 26 + 65)
@@ -65,6 +66,7 @@ class Rotor:
         return output_real
 
     def output(self, letter:str):
+        # se realiza traslado para simular diccionario
         con=self.connections
         output_simulado = chr((ord(letter) + self.position - 65) % 26 + 65)
         input_simulado=list(con.keys())[(list(con.values()).index(output_simulado))]
@@ -72,5 +74,6 @@ class Rotor:
 
         return input_real
     
+    # reflector funciona como un rotor que no rota
     def reflect(self, letter:str):
         return self.input(letter)
