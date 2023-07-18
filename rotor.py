@@ -29,11 +29,11 @@ def rotor_connections(type:str):
     elif type=='Beta':
         con=BETA
         muescas=[] # Beta is always in last position of the rotors, It doesn't rotate (It can´t do a rotation cascade)
-    elif type=='UKB-b':
-        con=UKB_B
+    elif type=='UKW-b':
+        con=UKW_B
         muescas=[] # Reflector doesn´t rotate, It can´t do a rotation cascade
-    elif type=='UKB-c':
-        con=UKB_C
+    elif type=='UKW-c':
+        con=UKW_C
         muescas=[] # Reflector doesn´t rotate, It can´t do a rotation cascade
     return (con,muescas)
 

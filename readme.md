@@ -22,7 +22,7 @@ Para utilizar esta implementación de la máquina Enigma, se debe:
     * Utilizar los rotores III, II, I y V, en ese orden.
     * El primer rotor (III) se posiciona inicialmente en 2, el segundo (II) en 21, el tercero (I) en 12 y el cuarto (V) en 10.
     * Conectar en el plugboard los pares (A,U), (I,R), (L,M), (Z,B), (Q,E), (H,F) y (V,D).
-    * Utilizar el reflector UKB-c.
+    * Utilizar el reflector UKW-c.
 
 2. Encriptar el mensaje:
     Por consola llamar `python enigma_machine.py MENSAJE_A_ENCRIPTAR`, lo que entregará (imprimiendo por consola) el mensaje encriptado.

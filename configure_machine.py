@@ -3,7 +3,7 @@ from utils import *
 
 
 available_rotors = ["I", "II", "III", "V", "VI", "VII", "VIII", "Beta"]
-available_reflectors = ["UKB-c", "UKB-b"]
+available_reflectors = ["UKW-c", "UKW-b"]
 
 def save_configuration(args:list[str]):
     with open(CONFIG_FILE, "w") as config:
