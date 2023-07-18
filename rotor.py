@@ -1,8 +1,7 @@
 from utils import *
 
 def rotor_connections(type:str):
-    # Dado un string de tipo de rotor/reflector, 
-    # entrega el diccionario de permutaciones y lista de muescas correspondiente segun la documentacion de la maquina enigma
+    # Given a string that represent a rotor o reflector, return the dictionary associated according to documentation
     if type=='I':
         con=I
         muescas=[24]
@@ -29,36 +28,34 @@ def rotor_connections(type:str):
         muescas=[0,21]
     elif type=='Beta':
         con=BETA
-        muescas=[] # beta al ser ultimo rotor, no hace girar a nada en cascada
-    elif type=='UKW-b':
-        con=UKW_B
-        muescas=[] # reflector no hace girar a nada en cascada
-    elif type=='UKW-c':
-        con=UKW_C
-        muescas=[] # reflector no hace girar a nada en cascada
+        muescas=[] # Beta is always in last position of the rotors, It doesn't rotate (It can´t do a rotation cascade)
+    elif type=='UKB-b':
+        con=UKB_B
+        muescas=[] # Reflector doesn´t rotate, It can´t do a rotation cascade
+    elif type=='UKB-c':
+        con=UKB_C
+        muescas=[] # Reflector doesn´t rotate, It can´t do a rotation cascade
     return (con,muescas)
 
-
-# clase que representa un rotor, con los atributos correspondientes, puede representar tambien a un reflector
+# Representation of a rotor, with its attributes, this class can representate a reflector
 class Rotor:
     
     def __init__(self, rotor, offset):
         con,muescas = rotor_connections(rotor)
         self.connections = con
-        self.muescas = muescas # 
-        self.position = offset-1 # se empieza con 0 para seguir la logica de la encriptación implementada abajo
+        self.muescas = muescas
+        self.position = offset-1 # the logic of the encryption implementation starts in 0, so we have to do this arrangement
         
     def rotate(self, places:int):
         next = 0
-        if places!=0: #si se traslada
-            if self.position in self.muescas: # y estaba en una muesca
-                next = 1 # el siguiente rotará
-            self.position += places # se mueve rotor
-        
+        if places!=0: # if the rotor rotates
+            if self.position in self.muescas: # if there is a notch
+                next = 1 # the next rotor rotates
+            self.position += places # the actual rotor rotates
         return next
     
     def input(self, letter:str):
-        # se realiza traslado para simular diccionario
+        # translation of the letter according to the simulation of the machine
         input_simulado = chr((ord(letter) + self.position - 65) % 26 + 65)
         output_simulado = self.connections[input_simulado]
         output_real = chr((ord(output_simulado) - self.position - 65) % 26 + 65)
@@ -66,7 +63,7 @@ class Rotor:
         return output_real
 
     def output(self, letter:str):
-        # se realiza traslado para simular diccionario
+        # translation of the letter according to the simulation of the machine
         con=self.connections
         output_simulado = chr((ord(letter) + self.position - 65) % 26 + 65)
         input_simulado=list(con.keys())[(list(con.values()).index(output_simulado))]
@@ -74,6 +71,6 @@ class Rotor:
 
         return input_real
     
-    # reflector funciona como un rotor que no rota
+    # reflector works like a rotor
     def reflect(self, letter:str):
         return self.input(letter)

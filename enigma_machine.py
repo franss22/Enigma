@@ -2,19 +2,22 @@ from utils import *
 from rotor import Rotor
 import sys
 
+# Configuration is readed
 rotors, offsets, plugboard, reflector = read_configuration()
-#print(rotors, offsets, plugboard, reflector)
-largo_mensaje=len(sys.argv)
+
+# The message is extracted
+length=len(sys.argv)
 message=""
-for i in range(1,largo_mensaje):
+for i in range(1,length):
     message=message+sys.argv[i].upper()+" " 
-#message = sys.argv[1].upper()
 message=message[:-1]
+
+# The rotors and reflector are created
 rot1 = Rotor(rotors[0], offsets[0])
 rot2 = Rotor(rotors[1], offsets[1])
 rot3 = Rotor(rotors[2], offsets[2])
 rot4 = Rotor(rotors[3], offsets[3])
-refl = Rotor(reflector, 0)
+refl = Rotor(reflector, 1) # Reflector is always in position 1
 
 
 
